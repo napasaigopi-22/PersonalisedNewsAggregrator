@@ -1,0 +1,265 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block index %}
+
+<link rel="stylesheet" href="{% static './assets/css/components/news.css' %}">
+
+<div class="container" style="padding-top:100px">
+    {% include 'components/swiperjs.html' %}
+
+    <div class="row mt-2 p-2">
+        {% if bookmarks %}
+        <span class="bookmark-heading mb-4" style="text-align: left;width: 100%;">Your bookmarks</span>
+        {% for record in bookmarks %}
+        <div class="col-12 col-md-6 col-lg-4 mb-4 newscard">
+            <div class="card h-100">
+                <img style="max-height: 11em;" class="card-img-top" src="{{ record.headline.image }}" alt="News Image" loading="lazy">
+                <div class="card-body d-flex flex-column">
+                    <span class="card-title text-truncate">
+                        <a href="#" class="news-link text-dark" data-toggle="modal" data-target="#newsModal"
+                            data-url="{{ record.headline.url }}">{{ record.headline.title|truncatechars:65 }}</a>
+                    </span>
+                    <p class="card-text flex-grow-1">{{ record.headline.description|truncatechars:30 }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between flex-wrap" style="align-items: center;">
+                        <style>
+                            .bookmark-btn i{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                        </style>
+                        <div class="">
+                            <button class="btn btn-secondary" onclick="copyToClipboard('{{ record.headline.url }}')"
+                                aria-label="Copy URL">
+                                Copy
+                            </button>
+                        </div>
+                        <div class="">
+                            <div class="btns" role="group">
+                                <a href="https://www.instagram.com/share?url={{ record.headline.url }}" target="_blank"
+                                    class="social-icon fa fa-instagram" aria-label="Share on Instagram"></a>
+                                <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20link:%20{{ record.headline.url }}"
+                                    target="_blank" class="social-icon fa fa-whatsapp"
+                                    aria-label="Share on WhatsApp"></a>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ record.headline.url }}" target="_blank"
+                                    class="social-icon fa fa-facebook" aria-label="Share on Facebook"></a>
+                                <a style="display: flex;align-items: center;justify-content: center;border: 2px solid var(--foreground-tertiary);padding: 0;min-width: 30px!important;width: 30px;height: 30px;" class="btn bookmark-btn {% if record.headline.id %}btn-secondary{% else %}btn-danger{% endif %}" data-id="{{ record.headline.id }}" data-bookmarked="{% if record.headline.id in user_bookmarked_headline_ids %}true{% else %}false{% endif %}" aria-label="Bookmark">
+                                    {% if record.headline.id in user_bookmarked_headline_ids %}
+                                    <i class="social-icon fa solid fa-bookmark"></i>
+                                    {% else %}
+                                    <i class="social-icon fa fa-bookmark"></i>
+                                    {% endif %}
+                                </a>
+                                </div>
+                        </div>
+                        
+                        <div class="">
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#reportModal"
+                                aria-label="Report">
+                                Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <span class="bookmark-heading" style="text-align: center;width: 100%;">Their is no bookmarks yet!</span>
+        <div class="col-md-12" style="display: flex;align-items: center;justify-content: center;">
+            <img style="width: 28em;" src="../../static/assets/images/bookmarks-animate.svg" alt="">
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- News Modal -->
+    <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newsModalLabel">News Article</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="newsFrame" src="" frameborder="0" style="width: 100%; height: 80vh;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Modal -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportModalLabel">Report Content</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="reportReason">Reason for reporting:</label>
+                            <select class="form-control" id="reportReason">
+                                <option value="inappropriate">Inappropriate content</option>
+                                <option value="misleading">Misleading information</option>
+                                <option value="spam">Spam</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reportDescription">Description:</label>
+                            <textarea class="form-control" id="reportDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function openNewsPopup(url) {
+            const newsFrame = document.getElementById('newsFrame');
+            newsFrame.src = url;
+            $('#newsModal').modal('show');
+        }
+
+        function submitReport() {
+            // Implement report submission logic here
+            $('#reportModal').modal('hide');
+        }
+
+        $(document).ready(function () {
+            $('.news-link').on('click', function (e) {
+                e.preventDefault();
+                const url = $(this).data('url');
+                openNewsPopup(url);
+            });
+        });
+    </script>
+</div>
+
+<script>
+    // JavaScript function to open news content in a pop-up window
+    function openNewsPopup(url) {
+        // Define width and height for the pop-up window
+        var width = 800;
+        var height = 600;
+        // Calculate the position to center the pop-up window on the screen
+        var leftPosition = (window.screen.width - width) / 2;
+        var topPosition = (window.screen.height - height) / 2;
+        // Construct the features for the pop-up window
+        var features =
+            "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=" +
+            width +
+            ", height=" +
+            height +
+            ", top=" +
+            topPosition +
+            ", left=" +
+            leftPosition;
+        // Open the pop-up window with the specified URL and features
+        var popupWindow = window.open(url, "NewsPopup", features);
+        // Focus on the pop-up window
+        if (window.focus) {
+            popupWindow.focus();
+        }
+        // Prevent the default behavior of the anchor tag
+        return false;
+    }
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-bottom-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "2000",
+        "hideDuration": "2000",
+        "timeOut": "2000",
+        "extendedTimeOut": "2000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    // add a temporary textarea element, set url to it, select from there
+    function copyToClipboard(text) {
+        var input = document.createElement("textarea"); //create text area
+        input.value = text; //url set as value to textarea
+        document.body.appendChild(input); //add text area to body
+        input.select(); //select textarea content
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        toastr["info"]("Link Copied Successfully !!!");
+    }
+
+    function themeChange() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+    bookmarkButtons.forEach(button => {
+        const isBookmarked = button.getAttribute('data-bookmarked') === 'true';
+        updateButtonAppearance(button, isBookmarked);
+
+        button.addEventListener('click', function() {
+            const headlineId = this.getAttribute('data-id');
+            const isBookmarkAction = !this.classList.contains('btn-secondary');
+            const url = isBookmarkAction ? `/bookmark/${headlineId}/` : `/remove_bookmark/${headlineId}/`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ headline_id: headlineId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    updateButtonAppearance(this, isBookmarkAction);
+                } else {
+                    console.error('Error:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+    function updateButtonAppearance(button, isBookmarked) {
+        if (isBookmarked) {
+            button.innerHTML = '<i class="social-icon fa solid fa-bookmark"></i>';
+            button.classList.remove('btn-danger');
+            button.classList.add('btn-secondary');
+        } else {
+            button.innerHTML = '<i class="social-icon fa fa-bookmark"></i>';
+            button.classList.remove('btn-secondary');
+            button.classList.add('btn-danger');
+        }
+    }
+});
+</script>
+
+{% endblock index %}

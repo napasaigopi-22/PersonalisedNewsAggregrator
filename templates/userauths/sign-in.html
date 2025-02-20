@@ -1,0 +1,116 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block authentication %}
+<style>
+    .social-container1 {
+        text-align: center; /* Center-align content */
+    }
+
+    .btn-primary1 {
+        background-color: #4285F4; /* Google Blue */
+        border: none; /* Remove border */
+        padding: 10px 20px; /* Adjust padding */
+        font-size: 16px; /* Adjust font size */
+        cursor: pointer; /* Add cursor pointer on hover */
+    }
+
+    .btn-primary1:hover {
+        background-color: #357AE8; /* Darker shade of Google Blue on hover */
+    }
+
+    .btn-lin {
+        color: #fff; /* White text color */
+        text-decoration: none; /* Remove underline */
+    }
+
+    .btn-lin:hover {
+        color: #fff; /* White text color on hover */
+        text-decoration: none; /* Remove underline on hover */
+    }
+</style>
+
+<div class="container">
+    <div class="main-container">
+        <div class="main-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="../../static/assets/images/sign-in-animate.svg" style="width: max-content;">
+                </div>
+                <div class="col-md-6" style="display: flex;align-items: center;justify-content: center;">
+                    <div class="form-container">
+                        <div class="form-content box">
+                            <div class="logo">
+                                <img src="../../static/assets/images/news.png" width="80px" alt="News logo" class="logo-light">
+                                <img src="../../static/assets/images/news.png" width="80px" alt="News logo" class="logo-dark">
+                            </div>
+                            
+                            {% for message in messages %}
+                            {% if message.level == "success" %}
+                              <div class="alert alert-success">
+                                {{ message }}
+                              </div>
+                                                        
+                            {% else %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                          
+
+                            
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="signin-form" id="signin-form">
+                                    <div class="form-group">
+                                        <div class="animate-input">
+                                            <span>
+                                                Enter email
+                                            </span>
+                                            <input class="login-signup-input" type="text" name="email" maxlength="100" required="" id="login_username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="animate-input">
+                                            <span>
+                                                Enter Password
+                                            </span>
+                                            <input class="login-signup-input" type="password" name="password" autocomplete="current-password" required="" id="login_password">
+                                            <button>Show</button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-groupss">
+                                        <button class="btn-login" id="signin-btn" type="submit">
+                                            Sign In
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <div class="row">
+                                <div class="col-md-8 mx-auto my-2 order-md-1">
+                                    <div class="social-container1">
+                                        <button class="btn btn-primary1 mb-4">
+                                            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn-lin">Login With Google</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                       
+                        </div>
+                        <div class="box goto">
+                            <p>
+                                <span style="color: var(--foreground-tertiary);">Don't have an account?</span>
+                                <a href="{% url 'userauths:sign-up' %}">Sign up</a>
+                            </p>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock authentication %}
