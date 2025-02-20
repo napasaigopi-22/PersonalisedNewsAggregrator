@@ -272,10 +272,26 @@ header .flex-wrapper { display: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--foreground-secondary);
+  color: rgb(30, 89, 183);
   font-size: 28px;
-  font-family: "Meow Script", cursive;
+  font-family: "Product Sans", sans-serif;
+  font-weight: 900;
 }
+.footer-icons {
+  justify-content: space-between;
+  padding: 16px 64px 0px 0px;
+  color: rgb(41, 81, 169);
+  font-weight: 900;
+}
+  
+  .footer-icons ul {
+  list-style-type: none;
+}
+  
+  .footer-icons li {
+  display: inline-block;
+}
+
 
 .logo-light,
 .logo-dark { display: none; }
