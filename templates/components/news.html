@@ -2,6 +2,16 @@
 
 <link rel="stylesheet" href="{% static './assets/css/components/news.css' %}">
 
+
+<div class="homepic">
+    <div class="header">
+        <div class="header-container">
+            <h1 class="text">Ooty Origins</h1>
+            <h3>Experience the rich heritage and culture of Ooty through our tribal crafts and products.</h3>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     {% include 'components/swiperjs.html' %}
 
@@ -74,7 +84,7 @@
                                     <i style="font-size: 16px;" class="social-icon fa fa-bookmark"></i>
                                     {% endif %}
                                 </a>
-                                <a style="display: flex; align-items: center; justify-content: center; border: 2px solid var(--foreground-tertiary); padding: 0; min-width: 30px!important; width!important: 30px; height: 30px;!important" class="btn btn-danger" data-toggle="modal" data-target="#reportModal" aria-label="Report">
+                                <a style="display: flex; align-items: center; justify-content: center; border: 2px solid var(--foreground-tertiary); padding: 0; min-width: 30px!important; width: 30px; height: 30px;" class="btn btn-danger" data-toggle="modal" data-target="#reportModal" aria-label="Report">
                                     <span style="font-size: 16px;" class="material-symbols-outlined"> report </span>
                                 </a>
                                 <a style="display: flex; align-items: center; justify-content: center; border: 2px solid var(--foreground-tertiary); padding: 0; min-width: 30px!important; width: 30px; height: 30px;" class="btn copy-btn" onclick="copyToClipboard('{{ record.url }}')" aria-label="Copy URL">
