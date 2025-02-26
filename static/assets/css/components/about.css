@@ -222,8 +222,8 @@ p, ul{
   }
   
   .text-blk.subHeading {
-    font-size: 14px;
-    line-height: 25px;
+    font-size: 10px;
+    line-height: 15px;
   }
   
   @media (max-width: 1024px) {
@@ -315,8 +315,8 @@ p, ul{
     }
   
     .text-blk.subHeading {
-      font-size: 14px;
-      line-height: 25px;
+      font-size: 10px;
+      line-height: 15px;
     }
   
     .responsive-container-block.leftSide {

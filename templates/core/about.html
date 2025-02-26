@@ -3,33 +3,73 @@
 
 {% block index %}
 <link rel="stylesheet" href="{% static './assets/css/components/about.css' %}">
+<link rel="stylesheet" href="{% static './assets/css/components/profile.css' %}">
 
 
 <div class="responsive-container-block bigContainer">
     <div class="responsive-container-block Container">
       <div class="responsive-container-block leftSide">
         <p class="text-blk heading">
-          Meet Our Creative Team
+          MAIN HEADLINES OF OUR WEBSITE
         </p>
         <p class="text-blk subHeading">
-          Semaj Africa is an online education platform that delivers video courses, programs and resources for Individual, Advertising &amp; Media Specialist, Online Marketing Professionals, Freelancers and anyone looking to pursue a career in digital marketing, Accounting, Web development, Programming. Multimedia and CAD design.
-        </p>
+         <h5> <span style="color:white">Welcome to MANA News, your go-to destination for the latest and most reliable news from around the world. We are committed to delivering accurate, unbiased, and insightful news across various categories, including politics, business, technology, entertainment, sports, and more.
+        </span></h5></p>
       </div>
       <div class="responsive-container-block rightSide">
-        <img class="number1img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET32.jpg">
-        <img class="number2img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/d14.png">
-        <img class="number3img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/b245.png">
-        <img class="number5img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/Customer supports.png">
-        <img class="number4img" src="{% static '/assets/images/breakingnews.png' %}">
+        <img class="number1img" src="{% static '/assets/images/image1.png' %}">
+        <img class="number2img" src="{% static '/assets/images/image4.png' %}">
+        <img class="number3img" src="{% static '/assets/images/image5.png' %}">
+        <img class="number5img" src="{% static '/assets/images/image7.png' %}">
+        <img class="number4img" src="{% static '/assets/images/image3.png' %}">
 
-        <img class="number7img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/d51.png">
-        <img class="number6img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/d12.png">
+        <img class="number7img" src="{% static '/assets/images/image6.png' %}">
+        <img class="number6img" src="{% static '/assets/images/image2.png' %}">
       </div>
     </div>
   </div>
+<!-- profile card -->
+
+  <div class="dev-container">
+      <div>
+          <h1 class="guide">Meet Guide & Our Developers</h1>
+          <hr class="solid">
+          <div class="grid-container">
+            <div class="profile-container">
+                <div class="profile-card">
+                    <img src="{% static './assets/images/dev3.png' %}" alt="Developer Name">
+                    <h2><span style="font-weight: bold;color: rgb(171, 11, 37);">Dr. Arun Kumar C</span></h2>
+                    <h4>Role: Guide</h4>
+                    <p>Assistant Professor (Sl.Gd.)</p>
+                    <h4><span style="font-weight: bold;color: brown;">School of Computing, Coimbatore</span></h4>
+                </div>
+            </div>
+
+              <div class="profile-container">
+                  <div class="profile-card">
+                      <img src="{% static '/assets/images/dev1.png' %}" alt="Developer Name">
+                      <h2><span style="font-weight: bold;color: rgb(171, 11, 37);">N MAHESH</span></h2>
+                      <h4>Role: Developer</h4>
+                      <p>Roll No: CB.SC.P2CSE24015</p>
+                      <h4><span style="font-weight: bold;color: brown;">Amrita School Of Engineering</span></h4>
+                  </div>
+              </div>
+
+              <div class="profile-container">
+                  <div class="profile-card">
+                      <img src="{% static './assets/images/dev2.png' %}" alt="Developer Name">
+                      <h2><span style="font-weight: bold;color: rgb(171, 11, 37);">NAPA SAI GOPI</span></h2>
+                      <h4>Role: Developer</h4>
+                      <p>Roll No: CB.SC.P2CSE24008</p>
+                      <h4><span style="font-weight: bold;color: brown;">Amrita School Of Engineering</span></h4>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
 
-<div class="container about" style="padding-top:100px">
+<div class="container about" style="padding-top:50px">
     <div class="about-us">
         <h4>About Us</h4>
         <p>
@@ -46,8 +86,7 @@
                 <li>Phone: 123-456-7890</li>
                 <li>Address: 123 MANA Street, MANAville, ON 12345</li>
             </ul>
-        </p>
-        
+        </p>     
     </div>
 </div>
 

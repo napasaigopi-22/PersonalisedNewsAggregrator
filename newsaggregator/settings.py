@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     
     # authentication
     'userauths',
+    
+    # show urls
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -178,5 +181,6 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL ='logout'
 LOGOUT_REDIRECT_URL ='login'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'google_key'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='google_secret'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '72102627000-s1632lg4ds9tnqaf2cs4okq04alvv3ld.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://127.0.0.1:8000/auth/complete/google-oauth2/'
