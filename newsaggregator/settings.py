@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
+
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,6 +56,9 @@ INSTALLED_APPS = [
     
     # authentication
     'userauths',
+    
+    # show urls
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -178,5 +183,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL ='logout'
 LOGOUT_REDIRECT_URL ='login'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'google_key'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='google_secret'
+load_dotenv()  # Load environment variables from .env file
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("GOOGLE_CLIENT_ID")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URL')

@@ -12,7 +12,7 @@
             </a>
 
             <p class="footer-text">
-                <span>&copy; 2024 Onion News Aggregator. All rights reserved.</span>
+                <span>&copy; 2025 MANA News Aggregator. All rights reserved.</span>
             </p>
         </div>
 
@@ -28,21 +28,27 @@
             </script>
         </div>
 
-        <div class="wrapper col-md-3 col-12" style="display: flex;justify-content: space-around;flex-direction: column;">
-            <p class="footer-title">Legal Stuff</p>
-            <ul>
-                <li>
-                    <a href="{% url 'core:privacy' %}" class="footer-link">Privacy Notice</a>
-                </li>
-                <li>
-                    <a href="#" style="pointer-events: none; opacity: 0.5;" class="footer-link">Cookie Policy</a>
-                </li>
-                <li>
-                    <a href="#" style="pointer-events: none; opacity: 0.5;" class="footer-link">Terms Of Use</a>
-                </li>
-            </ul>
-        </div>
+        <div class="wrapper col-md-3 col-12">
+            <h5><p class="footer-icons">Follow Us</p></h5>
+            <ul class="social-icons" style="display: flex; gap: 10px; list-style: none; padding: 0; margin: 0;">
+                 <li>
+                     <a href="https://www.youtube.com" class="social-icon fa fa-youtube" style="font-size: 16px; background:rgb(100, 19, 3); color: white; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--foreground-tertiary);" aria-label="Share on Youtube" onclick="shareOnYoutube('{{ record.url }}')"></a>
+                 </li>
+                 <li>
+                     <a href="https://www.pinterest.com" class="social-icon fa fa-pinterest" style="font-size: 16px; background:rgb(12, 13, 14); color: white; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--foreground-tertiary);" aria-label="Share on pinterest" onclick="shareOnpinterest('{{ record.url }}')"></a>
+                 </li>
+                 <li>
+                     <a href="https://www.twitter.com" class="social-icon fa fa-twitter" style="font-size: 16px; background:rgb(69, 145, 178); color: white;display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--foreground-tertiary);" aria-label="Share on Twitter" onclick="shareOnTwitter('{{ record.url }}')"></a>       
+                 </li>
+                 <li>
+                     <a href="https://www.google.com" class="social-icon fa fa-google" style="font-size: 16px; background:rgb(228, 19, 64);color: white; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--foreground-tertiary);" aria-label="Share on Google" onclick="shareOnGoogle('{{ record.url }}')"></a>
+                 </li>
+                 <li>
+                     <a href="https://www.instagram.com" class="social-icon fa fa-instagram" style="font-size: 16px; background:rgb(38, 5, 109); color: white;display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--foreground-tertiary);" aria-label="Share on Instagram" onclick="shareOnInstagram('{{ record.url }}')"></a>
+                 </li>
+             </ul>
+         </div>
     </div>
 
-    <p class="copyright" style="margin: 0;">&copy; Copyright 2024 <a href="#">Onion News</a></p>
+    <p class="copyright" style="margin: 0;">&copy; Copyright 2025 <a href="#">MANA News</a></p>
 </footer>
