@@ -35,7 +35,7 @@
   }
   
   .profile-container {
-    width: 300px;
+    width: 350px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
     background-color: #ffffff;
@@ -44,8 +44,8 @@
   }
   
   .profile-card img {
-    width: 120px;
-    height: 280px;
+    width: 140px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
     margin: 1rem auto;
