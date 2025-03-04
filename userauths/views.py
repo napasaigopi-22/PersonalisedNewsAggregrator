@@ -13,6 +13,10 @@ def register_view(request):
         if form.is_valid():
             new_user = form.save()
             username = form.cleaned_data.get("username")
+            current_level = messages.get_messages(request)
+            print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
+            for i in current_level:
+                print(current_level)
             messages.success(request, f"Hey {username}, your account was created successfully")
 
             new_user = authenticate(username=form.cleaned_data['email'], 
@@ -31,6 +35,10 @@ def register_view(request):
 def login_view(request):
     #email-numamahesh2000@gmail.com, password- 6_PK8Mg-6A25pZ6
     if request.user.is_authenticated:
+        current_level = messages.get_messages(request)
+        print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
+        for i in current_level:
+            print(current_level)
         messages.warning(request,f"Hey, You are already Logged in")
         return redirect('core:index')
     else:
@@ -41,6 +49,10 @@ def login_view(request):
             try:
                 user=User.object.get(email=email)
             except:
+                current_level = messages.get_messages(request)
+                print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
+                for i in current_level:
+                    print(current_level)
                 messages.warning(request,f"User with {email} does not exist")
                 
 
@@ -51,6 +63,10 @@ def login_view(request):
                 return redirect("core:index")
             
             else:
+                current_level = messages.get_messages(request)
+                print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
+                for i in current_level:
+                    print(current_level)
                 messages.warning(request,"User Does not exist, create an account")
                 
     return render(request,"userauths/sign-in.html")
