@@ -59,9 +59,16 @@ def login_view(request):
 def logout_view(request):
    
     logout(request)
-    messages.success(request, "You Logged-Out, successfully")
+    # messages.warning(request, None)  # recorded
+    # messages.set_level(request, 0)
     
-    return redirect("userauths:sign-in",)
+    current_level = messages.get_messages(request)
+    print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
+    for i in current_level:
+        print(current_level)
+    # print("\n\n\n\n\n\n\n\n",current_level.message)  # not recorded
+    messages.success(request, "You Logged-Out, successfully")
+    return redirect("userauths:sign-in")
 
 def home(request):
     return render(request,'base_auth.html')

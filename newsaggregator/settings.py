@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-tbg=6esx$o_7&r*!iin2=s2u+@(qfev6(g8_8!^3-$93o*&4ht
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', '.vercel.app']
 
 # emailing service
 EMAIL_HOST = 'smtp.gmail.com'
