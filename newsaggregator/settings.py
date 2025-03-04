@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-tbg=6esx$o_7&r*!iin2=s2u+@(qfev6(g8_8!^3-$93o*&4ht
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', '.vercel.app']
 
 # emailing service
 EMAIL_HOST = 'smtp.gmail.com'
@@ -186,4 +186,4 @@ LOGOUT_REDIRECT_URL ='login'
 load_dotenv()  # Load environment variables from .env file
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("GOOGLE_CLIENT_ID")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URL')
+# SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URL')

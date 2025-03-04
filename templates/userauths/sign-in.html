@@ -83,7 +83,8 @@
                             </div>
                             
                             {% for message in messages %}
-                            {% if message.level == "success" %}
+                            {%if message.level is not 25 %}<div class="alert alert-success">yessss</div>{%endif%}
+                            {% if message.level is 25 %}
                               <div class="alert alert-success">
                                 {{ message }}
                               </div>

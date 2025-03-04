@@ -89,7 +89,7 @@ def news_list(request):
 
 @login_required(login_url='userauths:sign-in')
 def index(request):
-    Headline.objects.all().delete()
+    # Headline.objects.all().delete()
     session = requests.Session()
     session.headers = {"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
     url = f"https://www.theonion.com/latest"
