@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from userauths.forms import UserRegisterForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
-from django.conf import settings
+# from django.conf import settings
+from userauths.models import User
 from django.contrib.auth import logout
 
-User=settings.AUTH_USER_MODEL
+# User=settings.AUTH_USER_MODEL
 
 def register_view(request):
     if request.method == "POST":
@@ -45,15 +46,23 @@ def login_view(request):
         if request.method=="POST":
             email=request.POST.get("email")
             password=request.POST.get("password")
-
-            try:
-                user=User.object.get(email=email)
-            except:
-                current_level = messages.get_messages(request)
-                print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
-                for i in current_level:
-                    print(current_level)
-                messages.warning(request,f"User with {email} does not exist")
+            current_level = messages.get_messages(request)
+            print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
+            for i in current_level:
+                print(current_level)
+            # try:
+            #     print("user object")
+            #     user=authenticate(request,email=email,password=password)
+            #     print('authenticate',user)
+            #     user=User.objects.get(email=email)
+            #     print("user is --------~~~~~~~~~~~~~~~~~~~~~~~~",user)
+            # except:
+            #     current_level = messages.get_messages(request)
+            #     print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
+            #     for i in current_level:
+            #         print(current_level)
+            #     messages.warning(request,f"User with {email} does not exist")
+            #     return render(request,"userauths/sign-in.html")
                 
 
             user=authenticate(request,email=email,password=password)
@@ -67,7 +76,9 @@ def login_view(request):
                 print("\n\n\n\n\n\n\n\n",current_level)  # not recorded
                 for i in current_level:
                     print(current_level)
-                messages.warning(request,"User Does not exist, create an account")
+                # messages.warning(request,"User Does not exist, create an account")
+                messages.warning(request,f"User with {email} does not exist")
+
                 
     return render(request,"userauths/sign-in.html")
 
